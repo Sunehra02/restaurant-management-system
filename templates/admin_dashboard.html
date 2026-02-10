@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+  background: linear-gradient(135deg, rgba(255, 223, 235, 0.85), rgba(240, 245, 255, 0.85), rgba(255, 244, 228, 0.85));
+  background-blend-mode: lighten;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.8s ease;
+}
+
+
+    .dashboard-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      border-radius: 25px;
+      padding: 60px 40px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      max-width: 550px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h3.dashboard-title {
+      font-weight: 700;
+      font-size: 30px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .admin-id {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .btn-custom {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease-in-out;
+      background-size: 300% 100%;
+      background-position: left center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      color: white;
+    }
+
+    .btn-custom:hover {
+      background-position: right center;
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn-menu {
+      background-image: linear-gradient(to right, #f7971e, #ffd200, #f7971e);
+    }
+    .btn-inventory {
+      background-image: linear-gradient(to right, #ff416c, #ff4b2b, #ff416c);
+    }
+    .btn-orders {
+      background-image: linear-gradient(to right, #36d1dc, #5b86e5, #36d1dc);
+    }
+    .btn-logs {
+      background-image: linear-gradient(to right, #8e2de2, #4a00e0, #8e2de2);
+    }
+    .btn-staff {
+      background-image: linear-gradient(to right, #43cea2, #185a9d, #43cea2);
+    }
+    .btn-view-staff {
+      background-image: linear-gradient(to right, #fc466b, #3f5efb, #fc466b);
+    }
+    .btn-profile {
+      background-image: linear-gradient(to right, #00c9ff, #92fe9d, #00c9ff);
+    }
+    .btn-logout {
+      background-image: linear-gradient(to right, #bdc3c7, #2c3e50, #bdc3c7);
+      color: white;
+    }
+
+    .alert a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-card">
+    <h3 class="dashboard-title">Welcome, {{ name }} 👋</h3>
+    <p class="admin-id">Admin ID: {{ user_id }}</p>
+
+    {% if low_alert > 0 %}
+      <div class="alert {% if low_alert >= 5 %}alert-danger{% else %}alert-warning{% endif %} text-center mt-3">
+        ⚠️ {{ low_alert }} inventory item{{ low_alert > 1 and 's are' or ' is' }} below threshold.
+        <a href="/admin/inventory" class="alert-link">Review Inventory</a>
+      </div>
+    {% endif %}
+
+    <a href="/admin/menu" class="btn btn-custom btn-menu">🍔 Manage Menu</a>
+    <a href="/admin/inventory" class="btn btn-custom btn-inventory">📦 Manage Inventory</a>
+    <a href="/admin/orders" class="btn btn-custom btn-orders">📋 View Orders</a>
+    <a href="/admin/logs" class="btn btn-custom btn-logs">📊 Transaction Logs</a>
+    <a href="/admin/create_staff" class="btn btn-custom btn-staff">➕ Add Staff</a>
+    <a href="/admin/view_staff" class="btn btn-custom btn-view-staff">👥 View Staff</a>
+    <a href="/admin/profile" class="btn btn-custom btn-profile">👤 View Profile</a>
+    <a href="/logout" class="btn btn-custom btn-logout mt-4">🚪 Log Out</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Profile</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .profile-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            box-shadow: 0 0 10px #ccc;
+        }
+        .profile-box h2 {
+            text-align: center;
+        }
+        .profile-info {
+            margin-top: 20px;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-box">
+        <h2>Admin Profile</h2>
+        <div class="profile-info">
+            <p><strong>ID:</strong> {{ admin.user_id }}</p>
+            <p><strong>Name:</strong> {{ admin.full_name }}</p>
+            <p><strong>Email:</strong> {{ admin.email }}</p>
+        </div>
+    </div>
+</body>
+</html>

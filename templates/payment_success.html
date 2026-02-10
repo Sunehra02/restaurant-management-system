@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Successful</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(120deg, #c8e6c9, #b2dfdb);
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-card {
+      background-color: #ffffff;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      text-align: center;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .emoji {
+      font-size: 70px;
+      animation: pop 1s ease;
+    }
+
+    h1 {
+      color: #388e3c;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .btn-back {
+      margin-top: 30px;
+      background-color: #388e3c;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background-color: #2e7d32;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="success-card">
+    <div class="emoji">✅</div>
+    <h1>Payment Successful!</h1>
+    <p><strong>Subtotal:</strong> {{ original_total }} BDT</p>
+{% if discount and discount > 0 %}
+  <p><strong>Discount (15%):</strong> -{{ discount }} BDT</p>
+{% endif %}
+<p><strong>Final Total:</strong> {{ total }} BDT</p>
+<p><strong>Payment Method:</strong> {{ method }}</p>
+<a href="/customer" class="btn-back">Return to Dashboard</a>
+  </div>
+</body>
+</html>

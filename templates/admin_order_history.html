@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin – Order History</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #fdfcdc, #e4c1f9);
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #4c0033;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .order-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 25px;
+      transition: 0.3s;
+    }
+
+    .order-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .order-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #6a0572;
+    }
+
+    .info-label {
+      font-weight: 600;
+    }
+
+    .item-list {
+      margin-top: 10px;
+    }
+
+    .item {
+      margin-bottom: 6px;
+    }
+
+    .badge-waiter {
+      background-color: #ffb347;
+      color: #000;
+    }
+
+    .badge-customer {
+      background-color: #8ecae6;
+      color: #000;
+    }
+
+    .bottom-button {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-back {
+      background: linear-gradient(to right, #7b2cbf, #9d4edd);
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-back:hover {
+      background: linear-gradient(to right, #5a189a, #7b2cbf);
+    }
+  </style>
+</head>
+<body>
+  <h2>📜 All Orders Placed</h2>
+
+  {% for order in orders %}
+    <div class="order-card">
+      <div class="order-title">Order #{{ order.order_id }}</div>
+      <p><span class="info-label">Customer:</span> {{ order.customer_name }}</p>
+      <p>
+        <span class="info-label">Placed by:</span>
+        {% if order.placed_by == 'Customer' %}
+          <span class="badge badge-customer">Customer</span>
+        {% else %}
+          <span class="badge badge-waiter">{{ order.placed_by }}</span>
+        {% endif %}
+      </p>
+      <p><span class="info-label">Order Time:</span> {{ order.time.strftime('%Y-%m-%d %H:%M') }}</p>
+      <p><span class="info-label">Discount:</span> {{ order.discount }} BDT</p>
+      <p><span class="info-label">Total:</span> {{ order.total }} BDT</p>
+
+      <div class="item-list">
+        <p class="info-label">Items:</p>
+        <ul>
+          {% for item in order["items"] %}
+            <li>{{ item.quantity }} × {{ item.item_name }} — {{ item.subtotal }} BDT</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endfor %}
+
+  <div class="bottom-button">
+    <a href="/admin" class="btn-back">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

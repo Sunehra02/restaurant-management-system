@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Waiter Order Queue</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #fff0f5);
+      font-family: 'Segoe UI', sans-serif;
+      padding: 50px;
+    }
+
+    .order-box {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      font-weight: 700;
+    }
+
+    .item-list {
+      margin-top: 10px;
+    }
+
+    .deliver-btn {
+      margin-top: 15px;
+      background: linear-gradient(to right, #00c9ff, #92fe9d);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .deliver-btn:hover {
+      background: linear-gradient(to right, #92fe9d, #00c9ff);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="text-center mb-4">🧾 Orders Ready to Serve</h2>
+
+    {% for order in orders %}
+    <div class="order-box">
+      <h5>Order #{{ order.order_id }} - {{ order.customer_name }}</h5>
+      <p><strong>Placed at:</strong> {{ order.order_time }}</p>
+
+      <ul class="list-group item-list">
+        {% for item in order["items"] %}
+          <li class="list-group-item d-flex justify-content-between">
+            {{ item.quantity }} × {{ item.item_name }}
+          </li>
+        {% endfor %}
+      </ul>
+
+      <form method="post" action="/waiter/mark_delivered/{{ order.order_id }}">
+        <button type="submit" class="deliver-btn mt-3">✅ Mark as Delivered</button>
+      </form>
+    </div>
+    {% endfor %}
+
+    <div class="text-center mt-4">
+      <a href="/waiter" class="btn btn-secondary">⬅ Back to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

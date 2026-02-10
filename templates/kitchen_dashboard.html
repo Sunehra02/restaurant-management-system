@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kitchen Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, rgba(255, 223, 235, 0.85), rgba(240, 245, 255, 0.85), rgba(255, 244, 228, 0.85));
+      background-blend-mode: lighten;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .dashboard-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      border-radius: 25px;
+      padding: 60px 40px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      max-width: 550px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: 30px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .staff-id {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .btn-custom {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease-in-out;
+      background-size: 300% 100%;
+      background-position: left center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      color: white;
+    }
+
+    .btn-custom:hover {
+      background-position: right center;
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn-orders {
+      background-image: linear-gradient(to right, #36d1dc, #5b86e5, #36d1dc);
+    }
+
+    .btn-summary {
+      background-image: linear-gradient(to right, #f7971e, #ffd200, #f7971e);
+    }
+
+    .btn-profile {
+      background-image: linear-gradient(to right, #43cea2, #185a9d, #43cea2);
+    }
+
+    .btn-logout {
+      background-image: linear-gradient(to right, #bdc3c7, #2c3e50, #bdc3c7);
+      color: white;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-card">
+    <h3>Welcome, {{ name }} 👋</h3>
+    <p class="staff-id">Kitchen Staff ID: {{ user_id }}</p>
+
+    <!-- ✅ Live Orders Page -->
+    <a href="/kitchen/orders" class="btn btn-custom btn-orders">📋 Live Orders + Ready Button</a>
+
+    <!-- (Coming Soon) Daily Summary -->
+    <a href="/kitchen/daily_summary" class="btn btn-custom btn-summary">📊 Daily Order Summary</a>
+
+    <!-- Profile -->
+    <a href="/kitchen/profile" class="btn btn-custom btn-profile">👤 View Profile</a>
+
+    <!-- Logout -->
+    <a href="/logout" class="btn btn-custom btn-logout mt-4">🚪 Log Out</a>
+  </div>
+</body>
+</html>

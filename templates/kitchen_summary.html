@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daily Summary - Kitchen</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #fff0f5, #e0f7fa);
+      font-family: 'Segoe UI', sans-serif;
+      padding: 50px;
+    }
+
+    .summary-container {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h2 {
+      font-weight: 700;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .date {
+      font-size: 18px;
+      color: #888;
+      margin-bottom: 30px;
+    }
+
+    .dish-summary {
+      margin-top: 30px;
+    }
+
+    .dish-item {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      background: linear-gradient(to right, #92fe9d, #00c9ff);
+      border: none;
+      padding: 12px 25px;
+      font-weight: bold;
+      border-radius: 10px;
+      transition: 0.3s ease;
+      color: #222;
+      display: inline-block;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="summary-container">
+    <h2>📊 Daily Order Summary</h2>
+    <p class="date">Date: {{ today }}</p>
+    <p><strong>Total Orders:</strong> {{ order_count }}</p>
+
+    <div class="dish-summary">
+      <h5>🍽️ Dish Breakdown</h5>
+      {% if summary %}
+        {% for item in summary %}
+          <div class="dish-item">
+            <span>{{ item.item_name }}</span>
+            <span>{{ item.total_qty }} ordered</span>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No orders placed today.</p>
+      {% endif %}
+    </div>
+
+    <a href="/kitchen" class="back-btn mt-4">⬅ Back to Dashboard</a>
+  </div>
+</body>
+</html>

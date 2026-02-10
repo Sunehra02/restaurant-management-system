@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Order History</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .order-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    .order-header {
+      font-weight: 600;
+      color: #333;
+    }
+    .item-row {
+      font-size: 0.95rem;
+    }
+    .total-row {
+      font-weight: 600;
+      color: #2d6a4f;
+    }
+  </style>
+</head>
+<body>
+<div class="container py-5">
+  <h2 class="mb-4 text-center">📜 Your Past Orders</h2>
+  {% if orders %}
+    {% for order in orders %}
+      <div class="order-card">
+        <div class="order-header mb-2">
+          Order ID: #{{ order.order_id }}<br>
+          Date: {{ order.time.strftime('%Y-%m-%d %H:%M') }}
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for item in order['items'] %}
+            <li class="list-group-item item-row">
+              {{ item.quantity }} × {{ item.item_name }} — {{ item.subtotal }} BDT
+            </li>
+          {% endfor %}
+        </ul>
+        <div class="mt-2 total-row">
+          Total: {{ order.total }} BDT
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="text-center text-muted">You haven’t placed any orders yet.</p>
+  {% endif %}
+  <div class="text-center mt-4">
+    <a href="/customer" class="btn btn-secondary">⬅ Back to Dashboard</a>
+  </div>
+</div>
+</body>
+</html>

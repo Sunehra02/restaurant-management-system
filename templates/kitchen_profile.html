@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kitchen Staff Profile</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .profile-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            box-shadow: 0 0 10px #ccc;
+        }
+        .profile-box h2 {
+            text-align: center;
+        }
+        .profile-info {
+            margin-top: 20px;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-box">
+        <h2>Kitchen Staff Profile</h2>
+        <div class="profile-info">
+            <p><strong>User ID:</strong> {{ kitchen.user_id }}</p>
+            <p><strong>Full Name:</strong> {{ kitchen.full_name }}</p>
+            <p><strong>Specialty:</strong> {{ kitchen.specialty }}</p>
+        </div>
+    </div>
+</body>
+</html>

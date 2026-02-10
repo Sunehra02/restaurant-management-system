@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Waiter Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+  background: linear-gradient(135deg, rgba(255, 223, 235, 0.85), rgba(240, 245, 255, 0.85), rgba(255, 244, 228, 0.85));
+  background-blend-mode: lighten;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+    .dashboard-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      border-radius: 25px;
+      padding: 60px 40px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: 30px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .btn-custom {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease-in-out;
+      background-size: 300% 100%;
+      background-position: left center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      color: white;
+      text-decoration: none;
+    }
+
+    .btn-custom:hover {
+      background-position: right center;
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn-orders {
+      background-image: linear-gradient(to right, #00c9ff, #92fe9d, #00c9ff);
+    }
+
+    .btn-add {
+      background-image: linear-gradient(to right, #f7971e, #ffd200, #f7971e);
+    }
+
+    .btn-profile {
+      background-image: linear-gradient(to right, #43cea2, #185a9d, #43cea2);
+    }
+
+    .btn-logout {
+      background-image: linear-gradient(to right, #bdc3c7, #2c3e50, #bdc3c7);
+      color: white;
+    }
+
+    .badge {
+      background-color: #ff5e57;
+      color: white;
+      font-size: 0.8rem;
+      padding: 5px 10px;
+      border-radius: 12px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-card">
+    <h3>Welcome, {{ name }} 👋</h3>
+    <p class="text-muted">Waiter ID: {{ user_id }}</p>
+
+    <!-- ✅ View Ready Orders -->
+    <a href="/waiter/orders" class="btn btn-custom btn-orders">
+      📋 View Ready Orders
+      {% if ready_order_count and ready_order_count > 0 %}
+        <span class="badge">{{ ready_order_count }}</span>
+      {% endif %}
+    </a>
+
+    <!-- Placeholder for creating new orders -->
+    <a href="/menu" class="btn btn-custom btn-add">➕ Add New Order</a>
+
+    <!-- Profile -->
+    <a href="/waiter/profile" class="btn btn-custom btn-profile">👤 View Profile</a>
+
+    <!-- Logout -->
+    <a href="/logout" class="btn btn-custom btn-logout mt-4">🚪 Log Out</a>
+  </div>
+</body>
+</html>
