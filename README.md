@@ -74,5 +74,6 @@ python -m venv .venv
 
 4. Configure database: Update your DB credentials in config.py.
    
-5. Run the app: python app.py
-6.Open in browser
+5.  Run the app: python app.py
+  
+6.  Open in browser
