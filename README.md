@@ -76,4 +76,20 @@ python -m venv .venv
 
 5. Run the app: python app.py
 
-6. Open in browser 
+6. Open in browser
+
+
+---
+
+**Database Setup (MySQL)**
+1. Create the database: CREATE DATABASE restaurant_db
+2. Import the included dump file from the project folder:
+   & "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysql.exe" -u root -p restaurant_db < restaurant_db.sql
+3. Update database credentials in config.py:
+   DB_HOST = "localhost"
+   DB_USER = "root"
+   DB_PASSWORD = "your_password"
+   DB_NAME = "restaurant_db"
+4. run the app:
+   pip install -r requirements.txt
+   python app.py
